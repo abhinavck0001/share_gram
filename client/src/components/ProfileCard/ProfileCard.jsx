@@ -13,12 +13,12 @@ const Profilecard = ({location}) => {
     return (
         <div className='ProfileCard'>
             <div className='ProfileImages'>
-                <img src={user.CoverPicture ? serverPulic + user.CoverPicture : serverPulic + "defaultCover.jpg"} alt="" />
-                <img src={user.profile ? serverPulic + user.profilePicture : serverPulic + "defaultProfile.png"} alt="" />
+                <img src={user.coverPicture ? serverPulic + user.coverPicture : serverPulic + "defaultCover.jpg"} alt="" />
+                <img src={user.profilePicture ? serverPulic + user.profilePicture : serverPulic + "defaultProfile.png"} alt="" />
             </div>
             <div className="ProfileName">
                 <span>{user.firstname} {user.lastname}</span>
-                <span>{user.workAt ? user.workAt : "write about your self.."}</span>
+                <span>{user.worksAt ? user.worksAt : "write about your self.."}</span>
             </div>
             <div className="followStatus">
                 <hr />

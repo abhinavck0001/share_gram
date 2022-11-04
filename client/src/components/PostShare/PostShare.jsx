@@ -1,5 +1,4 @@
 import React, { useState, useRef } from "react";
-import ProfileImage from "../../img/escobar2";
 import "./PostShare.css";
 import { UilScenery } from "@iconscout/react-unicons";
 import { UilPlayCircle } from "@iconscout/react-unicons";
@@ -56,7 +55,7 @@ const PostShare = () => {
   }
   return (
     <div className="PostShare">
-      <img src={user.profile ? serverPulic + user.profilePicture : serverPulic + "defaultProfile.png"} alt="" />
+      <img src={user.profilePicture ? serverPulic + user.profilePicture : serverPulic + "defaultProfile.png"} alt="" />
       <div>
         <input 
         ref={desc}

@@ -5,7 +5,7 @@ import ProfileModal from "../ProfileModal/ProfileModal";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import * as UserApi from "../../api/UserRequest.js";
-import { logout } from "../../actions/AuthAction";
+import { logout } from "../../actions/AuthAction.js";
 
 const InfoCard = () => {
   const [modalOpened, setModalOpened] = useState(false);
@@ -25,7 +25,7 @@ const InfoCard = () => {
     const fetchProfileUser = async () => {
       if (profileUserId === user._id) {
         setProfileUser(user);
-        console.log(user)
+        console.log(user,'userrrrrr')
       } else {
         console.log("fetching")
         const profileUser = await UserApi.getUser(profileUserId);
@@ -40,7 +40,7 @@ const InfoCard = () => {
   return (
     <div className="InfoCard">
       <div className="infoHead">
-        <h4>Profile Info</h4>
+        <h4 style={{color:"black"}}>Profile Info</h4>
         {user._id === profileUserId ? (
           <div>
             <UilPen
@@ -61,21 +61,28 @@ const InfoCard = () => {
 
       <div className="info">
         <span>
-          <b>Status </b>
+          <b style={{color:"#33333a"}}>Status-:</b>
         </span>
-        <span>{profileUser.relationship}</span>
+        <span >{profileUser.relationship}</span>
       </div>
 
       <div className="info">
         <span>
-          <b>Lives in </b>
+          <b style={{color:"#33333a"}}>Lives in-:</b>
         </span>
         <span>{profileUser.livesIn}</span>
       </div>
 
       <div className="info">
         <span>
-          <b>Works at </b>
+          <b style={{color:"#33333a"}}>Country-:</b>
+        </span>
+        <span>{profileUser.country}</span>
+      </div>
+
+      <div className="info">
+        <span>
+          <b style={{color:"#33333a"}} >Works at -:</b>
         </span>
         <span>{profileUser.worksAt}</span>
       </div>
