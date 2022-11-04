@@ -1,38 +1,60 @@
 import React from 'react'
-import Cover from '../../img/escobarC.jpg'
-import profile from '../../img/escobar2'
 import './profileCard.css'
+import { useSelector } from 'react-redux'
+import {Link} from 'react-router-dom' 
 
-const profilecard = () => {
+const Profilecard = ({location}) => {
+
+    const {user} = useSelector((state)=>state.authReducer.authData)
+    const posts = useSelector((state)=>state.postReducer.posts)
+    const serverPulic = process.env.REACT_APP_PUBLIC_FOLDER
+
+
     return (
         <div className='ProfileCard'>
             <div className='ProfileImages'>
-                <img src={Cover} alt="" />
-                <img src={profile} alt="" />
+                <img src={user.CoverPicture ? serverPulic + user.CoverPicture : serverPulic + "defaultCover.jpg"} alt="" />
+                <img src={user.profile ? serverPulic + user.profilePicture : serverPulic + "defaultProfile.png"} alt="" />
             </div>
             <div className="ProfileName">
-                <span>PABLO ESCOBAR</span>
-                <span>king of cocain</span>
+                <span>{user.firstname} {user.lastname}</span>
+                <span>{user.workAt ? user.workAt : "write about your self.."}</span>
             </div>
             <div className="followStatus">
                 <hr />
                 <div>
                     <div className="follow">
-                        <span>59</span>
+                        <span>{user.following.length}</span>
                         <span>following</span>
                     </div>
                     <div className="vL"></div>
                     <div className="follow">
-                        <span>113M</span>
+                        <span>{user.followers.length}</span>
                         <span>followers</span>
                     </div>
+                    {location === 'profilePage' && (
+                        <>
+                        <div className='vl'></div>
+                        <div className='follow'>
+                            <span>{posts.filter((post)=> post.userId === user._id).length}</span>
+                            <span>Posts</span>
+                        </div>
+                        </>
+                    )}
                 </div>
                 <hr />
             </div>
-            <span>My Profile</span>
+            
+                {location === 'profilePage'? ("") : (
+                    <span>
+                <Link style={{textDecoration : "none", color : 'inherit'}} to= {`/profile/${user._id}`}>
+                My Profile
+                </Link>
+            </span>
+                )}
 
         </div>
     )
 }
 
-export default profilecard
+export default Profilecard
